@@ -4,7 +4,7 @@ metadata:
   name: container-executor-pytest
   namespace: testkube
 spec:
-  image: pytest-executor:latest
+  image: atulinfracloud/pytest-executor:latest
   executor_type: container
   types:
   - container-executor-pytest/test
