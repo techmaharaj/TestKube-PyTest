@@ -1,8 +1,7 @@
 # weather_service.py
-
+import os
 import requests
 from flask import Flask, request, jsonify
-import pytest, os
 
 app = Flask(__name__)
 
