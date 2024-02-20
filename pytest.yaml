@@ -11,6 +11,6 @@ spec:
       type: git
       uri: https://github.com/techmaharaj/TestKube-PyTest
       branch: main
-      path: weather_service_test.py
+      path: calculator_test.py
   executionRequest:
-    command: ["pytest", "/data/repo/weather_service_test.py"]
+    command: ["pytest", "/data/repo/calculator_test.py"]
