@@ -1,7 +1,7 @@
 apiVersion: tests.testkube.io/v3
 kind: Test
 metadata:
-  name: container-executor-pytest-passed-sample
+  name: calculator-test-pass-sample
   namespace: testkube
 spec:
   type: container-executor-pytest/test
