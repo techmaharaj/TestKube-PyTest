@@ -58,7 +58,7 @@ def calculator():
 def test_add(calculator):
     x = random.uniform(-100, 100)
     y = random.uniform(-100, 100)
-    expected_result = x + y
+    expected_result = x + y + 1 #Intentionally failing the test case
     actual_result = calculator.add(x, y)
     if actual_result == expected_result:
         print(f"Add test passed: {x} + {y} = {actual_result}")
