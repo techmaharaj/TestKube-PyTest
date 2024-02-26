@@ -58,32 +58,23 @@ def calculator():
 def test_add(calculator):
     x = random.uniform(-100, 100)
     y = random.uniform(-100, 100)
-    expected_result = x + y + 1 #Intentionally failing the test case
+    expected_result = (x + y) + 10 #Intentionally failing the test.
     actual_result = calculator.add(x, y)
-    if actual_result == expected_result:
-        print(f"Add test passed: {x} + {y} = {actual_result}")
-    else:
-        print(f"Add test failed: {x} + {y} != {actual_result}. Expected {expected_result}")
+    assert actual_result == expected_result, f"Add test failed: {x} + {y} != {actual_result}. Expected {expected_result}"
 
 def test_subtract(calculator):
     x = random.uniform(-100, 100)
     y = random.uniform(-100, 100)
-    expected_result = x - y
+    expected_result = x - y 
     actual_result = calculator.subtract(x, y)
-    if actual_result == expected_result:
-        print(f"Subtract test passed: {x} - {y} = {actual_result}")
-    else:
-        print(f"Subtract test failed: {x} - {y} != {actual_result}. Expected {expected_result}")
+    assert actual_result == expected_result, f"Subtract test failed: {x} - {y} != {actual_result}. Expected {expected_result}"
 
 def test_multiply(calculator):
     x = random.uniform(-100, 100)
     y = random.uniform(-100, 100)
     expected_result = x * y
     actual_result = calculator.multiply(x, y)
-    if actual_result == expected_result:
-        print(f"Multiply test passed: {x} * {y} = {actual_result}")
-    else:
-        print(f"Multiply test failed: {x} * {y} != {actual_result}. Expected {expected_result}")
+    assert actual_result == expected_result, f"Multiply test failed: {x} * {y} != {actual_result}. Expected {expected_result}"
 
 def test_divide(calculator):
     x = random.uniform(-100, 100)
@@ -91,10 +82,7 @@ def test_divide(calculator):
     if y != 0:
         expected_result = x / y
         actual_result = calculator.divide(x, y)
-        if actual_result == expected_result:
-            print(f"Divide test passed: {x} / {y} = {actual_result}")
-        else:
-            print(f"Divide test failed: {x} / {y} != {actual_result}. Expected {expected_result}")
+        assert actual_result == expected_result, f"Divide test failed: {x} / {y} != {actual_result}. Expected {expected_result}"
     else:
         try:
             calculator.divide(x, y)
