@@ -31,6 +31,11 @@ jobs:
           helm repo update
           helm install --create-namespace my-testkube kubeshop/testkube
 
+      - name: Install Testkube CLI
+        run: |
+          curl -s https://get.testkube.io | bash
+          echo "$HOME/.testkube/bin" >> $GITHUB_PATH
+
       - name: Run Testkube Test
         run: |
           testkube create test --name k6-kubeshop-test --type k6/script --update --test-content-type git-file --git-uri https://github.com/techmaharaj/testkube-GH.git --git-branch main --git-path k6/testkube.js
