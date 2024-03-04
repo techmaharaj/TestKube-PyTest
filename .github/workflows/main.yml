@@ -36,8 +36,9 @@ jobs:
 
       - name: Check Pods Status
         run: |
-          kubectl get pods -A
           sleep 30
+          kubectl get all
+          sleep 15
         
       - run: |
           testkube create test --name k6-kubeshop-test --type k6/script --update --test-content-type git-file --git-uri https://github.com/techmaharaj/testkube-GH.git --git-branch main --git-path k6/testkube.js
