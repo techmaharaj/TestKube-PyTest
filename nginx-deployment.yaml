@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   name: nginx-deployment
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
-  replicas: 2 # Tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
@@ -17,3 +17,18 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
