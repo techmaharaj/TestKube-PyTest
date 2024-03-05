@@ -18,20 +18,14 @@ jobs:
           helm repo add kubeshop https://kubeshop.github.io/helm-charts; 
           helm repo update && helm upgrade --install --reuse-values --create-namespace testkube kubeshop/testkube --set testkube-api.cloud.key=${{ secrets.TESTKUBE_API_TOKEN }} --set testkube-api.cloud.orgId=${{ secrets.TESTKUBE_ORG_ID }} --set testkube-api.cloud.envId=${{ secrets.TESTKUBE_ENV_ID }} --set testkube-api.minio.enabled=false --set mongodb.enabled=false --set testkube-dashboard.enabled=false --set testkube-api.cloud.url=agent.testkube.io:443 --namespace testkube
 
-      - name: Run Testkube Test
-        uses: kubeshop/setup-testkube@v1
-
       - name: Check Pods Status
         run: |
-          sleep 30
+          sleep 45
           kubectl get all
-          sleep 15
-        
+          sleep 30
+      
+      - name: Run Testkube Test
+        uses: kubeshop/setup-testkube@v1        
       - run: |
           testkube create test --name k6-kubeshop-test --type k6/script --update --test-content-type git-file --git-uri https://github.com/techmaharaj/testkube-GH.git --git-branch main --git-path k6/testkube.js
           testkube run test k6-kubeshop-test -f
-
-      - name: Delete Kind Cluster
-        if: always() # Ensure the cluster is deleted even if previous steps fail
-        run: |
-          kind delete cluster
