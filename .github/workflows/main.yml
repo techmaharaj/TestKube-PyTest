@@ -31,4 +31,5 @@ jobs:
       - name: Run Testkube Test
         uses: kubeshop/setup-testkube@v1        
       - run: |
-          kubectl apply -f curl-test.yaml
+          testkube create test --name curl-nginx-test --type curl-test --update --test-content-type git-file --git-uri https://github.com/techmaharaj/TestKube-PyTest.git --git-branch main --git-path curl-test.json
+          testkube run test curl-nginx-test -f
