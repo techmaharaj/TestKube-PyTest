@@ -25,6 +25,7 @@ jobs:
       - name: Check Pods Status
         run: |
           sleep 45
+          kubectl get ns
           kubectl get all
           sleep 30
       
