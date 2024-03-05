@@ -13,6 +13,10 @@ jobs:
       - name: Kind Cluster
         uses: helm/kind-action@v1.9.0
 
+      - name: Deploy Nginx
+        run: |
+          kubectl apply -f nginx-deployment.yaml
+
       - name: Setup Testkube with Helm
         run: |
           helm repo add kubeshop https://kubeshop.github.io/helm-charts; 
@@ -27,5 +31,4 @@ jobs:
       - name: Run Testkube Test
         uses: kubeshop/setup-testkube@v1        
       - run: |
-          testkube create test --name k6-kubeshop-test --type k6/script --update --test-content-type git-file --git-uri https://github.com/techmaharaj/testkube-GH.git --git-branch main --git-path k6/testkube.js
-          testkube run test k6-kubeshop-test -f
+          kubectl apply -f curl-test.yaml
