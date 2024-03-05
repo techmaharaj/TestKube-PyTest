@@ -1,0 +1,9 @@
+{
+  "command": [
+    "curl",
+    "http://nginx-service",
+    "-H",
+    "'Accept: text/html'"
+  ],
+  "expected_status": "200"
+}
