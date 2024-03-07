@@ -24,7 +24,9 @@ jobs:
 
       - name: Check Pods Status
         run: |
-          kubectl wait --for=condition=Ready --namespace testkube $(kubectl get pods --namespace testkube | grep testkube-api-server | awk '{print $1}')
+          sleep 15
+          POD_NAME=$(kubectl get pods -n testkube | grep testkube-api-server | awk '{print $1}')
+          kubectl wait --for=condition=Ready $POD_NAME -n testkube
 
       - name: Run Testkube Test
         uses: kubeshop/setup-testkube@v1        
