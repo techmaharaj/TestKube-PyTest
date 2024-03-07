@@ -1,5 +1,4 @@
-name: Create Cluster
-
+name: Ephemeral Test Using Testkube
 on:
   push:
 
@@ -20,7 +19,19 @@ jobs:
       - name: Setup Testkube with Helm
         run: |
           helm repo add kubeshop https://kubeshop.github.io/helm-charts; 
-          helm repo update && helm upgrade --install --reuse-values --create-namespace testkube kubeshop/testkube --set testkube-api.cloud.key=${{ secrets.TESTKUBE_API_TOKEN }} --set testkube-api.cloud.orgId=${{ secrets.TESTKUBE_ORG_ID }} --set testkube-api.cloud.envId=${{ secrets.TESTKUBE_ENV_ID }} --set testkube-api.minio.enabled=false --set mongodb.enabled=false --set testkube-dashboard.enabled=false --set testkube-api.cloud.url=agent.testkube.io:443 --namespace testkube
+
+      - name: Configure Testkube Agent
+        run: |
+          helm upgrade --install --reuse-values --create-namespace testkube \
+            kubeshop/testkube \
+            --set testkube-api.cloud.key=tkcagnt_03c397a8b2ce0b57aff87da4600207 \
+            --set testkube-api.cloud.orgId=tkcorg_f5d90b4551d7bd35 \
+            --set testkube-api.cloud.envId=tkcenv_806b12d20f4ee930 \
+            --set testkube-api.minio.enabled=false \
+            --set mongodb.enabled=false \
+            --set testkube-dashboard.enabled=false \
+            --set testkube-api.cloud.url=agent.testkube.io:443 \
+            --namespace testkube
 
       - name: Check Pods Status
         run: |
