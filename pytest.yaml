@@ -11,6 +11,6 @@ spec:
       type: git
       uri: https://github.com/techmaharaj/TestKube-PyTest
       branch: main
-      path: calculator_test.py
+      path: test-api-endpoint.py
   executionRequest:
-    command: ["pytest", "/data/repo/calculator_test.py"]
+    command: ["pytest", "/data/repo/test-api-endpoint.py"]
